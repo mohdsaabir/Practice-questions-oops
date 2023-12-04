@@ -1,0 +1,17 @@
+import java.util.*;
+import primepackage.prime;
+
+
+
+public class primemain {
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+        int n;
+        System.out.println("Enter the no to be checked");
+        n = s.nextInt();
+        prime ob = new prime();
+        ob.getnumber(n);
+        ob.check();
+    }
+
+}
