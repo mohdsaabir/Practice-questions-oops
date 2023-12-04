@@ -1,0 +1,72 @@
+import java.util.*;
+import java.io.*;
+
+class palian {
+    void check(String str) {
+        try {
+            FileWriter fw = new FileWriter("C:\\Users\\sabir\\Desktop\\javaa\\file2.txt");
+            fw.write(str);
+            fw.close();
+            System.out.println("String is a paliandrome it is sucessfully writtern to file");
+            FileReader fr = new FileReader("C:\\Users\\sabir\\Desktop\\javaa\\file2.txt");
+            int l, c = 0, k = 0, j,no=0;
+            char ch, i;
+            char a[] = new char[10];
+            while ((l = fr.read()) != -1) {
+                ch = (char) l;
+                a[k] = ch;
+                k++;
+            }
+            no=k-1;
+            System.out.println("Frequency:");
+            for (i = 'a'; i <= 'z'; i++) {
+                for (j = 0, c = 0; j <=no; j++) {
+
+                    if (a[j] == i) {
+                        c++;
+                    }
+
+                }
+                if (c > 0) {
+                    System.out.println(i + " reapets " + c + " times");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+public class filepal {
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+        String str = new String();
+        System.out.println("Enter the word");
+        str = s.next();
+        int len,i,count=0;
+        len=str.length();
+        char ch;
+        String rstr=new String();
+        for(i=0;i<len;i++)
+        {
+            ch=str.charAt(i);
+            rstr=ch+rstr;
+        }
+        for(i=0;i<len;i++)
+        {
+            if(str.charAt(i)!=rstr.charAt(i))
+            {
+                count++;
+            }
+        }
+        if(count==0)
+        {
+            palian ob = new palian();
+            ob.check(str);
+        }
+        else{
+            System.out.println("String is not a paliandrome cant writtern to file");
+        }
+
+    }
+}
