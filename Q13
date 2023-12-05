@@ -1,0 +1,57 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class evennoexception extends Exception{
+    public evennoexception(String str)
+    {
+        super(str);
+    }
+}
+
+class oddnoexception extends Exception{
+    public oddnoexception(String str)
+    {
+        super(str);
+    }
+}
+
+class check{
+    void checkno(int n) throws evennoexception,oddnoexception
+    {
+        if(n%2==0)
+        {
+            throw new evennoexception("Sorry even no cannot be entered");
+        }
+        else if(n%2!=0)
+        {
+            throw new oddnoexception("Sorry odd no cannot be entered");
+        }
+
+    }
+}
+
+public class userex {
+    public static void main(String args[])
+    {
+        int n;
+        n=Integer.parseInt(args[0]);
+        check ob=new check();
+        try
+        {
+            ob.checkno(n);
+        }catch(evennoexception ex)
+        {
+            ex.printStackTrace();
+        }
+        catch(oddnoexception ex)
+        {
+            ex.printStackTrace();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+}
