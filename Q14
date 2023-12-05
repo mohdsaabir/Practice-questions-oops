@@ -1,0 +1,36 @@
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+class invalidno extends Exception {
+    invalidno(String str) {
+        super(str);
+    }
+}
+
+public class userex2 {
+    public static void main(String args[]) throws invalidno {
+        try {
+
+            int total = 0;
+            double avg;
+            int n = args.length;
+            int i;
+
+            for (i = 0; i < n; i++) {
+                if (Integer.parseInt(args[i]) < 0) {
+                    throw new invalidno("-Ve nos are not allowed");
+                } else if (Integer.parseInt(args[i]) == 0) {
+                    throw new invalidno("zero is not allowed");
+                } else {
+                    total = total + Integer.parseInt(args[i]);
+                }
+            }
+            avg = (double)total / n;
+            System.out.println("Average mark is: " + avg);
+        } catch (invalidno e) {
+            e.printStackTrace();
+        }
+
+    }
+}
