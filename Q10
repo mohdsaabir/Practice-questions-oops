@@ -1,0 +1,53 @@
+import java.io.*;
+
+class resource {
+    synchronized void resourcesc(int n) {
+        int i;
+        for (i = n; i <= 100; i = i + 2) {
+            System.out.println(i);
+            try {
+                Thread.sleep(400);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+
+    }
+}
+
+class odd extends Thread {
+    resource r;
+
+    odd(resource ob) {
+        r = ob;
+    }
+
+    public void run() {
+        r.resourcesc(51);
+    }
+
+}
+
+class even extends Thread {
+    resource r;
+
+    even(resource ob) {
+        r = ob;
+    }
+
+    public void run() {
+       
+        r.resourcesc(50);
+    }
+
+}
+
+class multiodd {
+    public static void main(String args[]) {
+        resource ob = new resource();
+        odd o = new odd(ob);
+        even e = new even(ob);
+        o.start();
+        e.start();
+    }
+}
