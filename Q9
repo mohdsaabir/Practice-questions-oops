@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.Random;
+
+class even extends Thread {
+    void star(int n) {
+        int i;
+        for (i = 0; i <= n; i = i + 2) {
+            System.out.println(i);
+        }
+    }
+}
+
+class odd extends Thread {
+    void start(int n) {
+        int i;
+        for (i = 1; i <= n; i = i + 2) {
+            System.out.println(i);
+        }
+    }
+}
+
+class random extends Thread{
+    public void run(){
+        int i;
+        Random ran=new Random();
+        i=ran.nextInt(15);
+        System.out.println("Random no is:"+i);
+        //for(i=0;i<=20;i++)
+        //{
+        //    System.out.println(i);
+        //    try {
+        //        Thread.sleep(500);
+        //    } catch (Exception e) {
+        //        e.printStackTrace();
+        //    }
+        //}
+        if(i%2==0)
+        {
+            even e=new even();
+            e.star(i);
+        }
+        else{
+            odd o=new odd();
+            o.start(i);
+        }
+        
+    
+    }
+    
+}
+
+public class program9 {
+    public static void main(String args[]) {
+        random r = new random();
+        r.start();
+    }
+
+}
