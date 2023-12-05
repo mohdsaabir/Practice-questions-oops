@@ -1,0 +1,40 @@
+import java.io.*;
+
+class multi5 implements Runnable {
+     synchronized public void run() {
+        int i;
+        
+        for (i = 1; i <= 10; i++) {
+            if (i % 5 == 0) {
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+class multi3 implements Runnable {
+    synchronized public void run() {
+        int i;
+        
+        for (i = 1; i <= 10; i++) {
+            if (i % 3 == 0) {
+                System.out.println(i);
+            }
+           
+            
+        }
+    }
+}
+
+class multi53 {
+    public static void main(String args[]) {
+        multi5 five = new multi5();
+        multi3 three = new multi3();
+        Thread t1=new Thread(five);
+        Thread t2=new Thread(three);
+
+        t1.start();
+        t2.start();
+
+    }
+}
