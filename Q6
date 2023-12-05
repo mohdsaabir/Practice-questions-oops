@@ -1,0 +1,48 @@
+import java.util.*;
+import java.io.*;
+
+class values{
+    int price,quantity,total;
+    String name;
+    void getdata(String name,int quantity,int price)
+    {
+        this.name=name;
+        this.quantity=quantity;
+        this.price=price;
+    }
+    public void calculate()
+    {
+        total=(quantity*price);
+    }
+    void display()
+    {
+        System.out.println(name+"\t\t"+price+"\t\t"+quantity+"\t\t"+total);
+    }
+}
+
+
+public class program6 {
+    public static void main(String args[])
+    {
+        Scanner s=new Scanner(System.in);
+        int n,i;
+        System.out.println("Enter the no of items to be added");
+        n=s.nextInt();
+        values ob[]=new values[n];
+        for(i=0;i<n;i++)
+        {
+            ob[i]=new values();
+            System.out.println("Enter the product name price and quantity");
+            String st=s.next();
+            int price=s.nextInt();
+            int quantity=s.nextInt();
+            ob[i].getdata(st,price,quantity);
+        }
+        System.out.println("Name\t\tPrice\t\tQuantity\t\tTotalprice");
+        for(i=0;i<n;i++)
+        {
+            ob[i].calculate();
+            ob[i].display();
+        }
+    } 
+}
