@@ -1,0 +1,28 @@
+import java.io.*;
+
+class copy {
+    public void coppy(String a,String b) {
+        try {
+            FileInputStream fr = new FileInputStream(a);
+            FileOutputStream fs = new FileOutputStream(b);
+            int i;
+            while ((i = fr.read()) != -1) {
+                fs.write(i);
+
+            }
+            
+
+            System.out.println("File copied sucessfully");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+public class file2 {
+    public static void main(String args[]) {
+        copy ob = new copy();
+        ob.coppy(args[0],args[1]);
+
+    }
+}
