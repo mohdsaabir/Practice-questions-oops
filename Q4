@@ -1,0 +1,84 @@
+import java.util.*;
+
+interface Shape {
+    void getDimensions();
+
+    double calcArea();
+
+    void display();
+
+    Scanner s = new Scanner(System.in);
+}
+
+class Rectangle implements Shape {
+    int length;
+    int width;
+
+    public void getDimensions() {
+        System.out.println("Enter length and width of the rectangle:");
+        length = s.nextInt();
+        width = s.nextInt();
+    }
+
+    public double calcArea() {
+        return length * width;
+    }
+
+    public void display() {
+        System.out.println("Rectangle - Length: " + length + ", Width: " + width + ", Area: " + calcArea());
+    }
+}
+
+class Circle implements Shape {
+    double radius;
+
+    public void getDimensions() {
+        System.out.println("Enter the radius of the circle:");
+        radius = s.nextDouble();
+    }
+
+    public double calcArea() {
+        return 3.14 * (radius * radius);
+    }
+
+    public void display() {
+        System.out.println("Circle - Radius: " + radius + ", Area: " + calcArea());
+    }
+}
+
+class Square implements Shape {
+    int side;
+
+    public void getDimensions() {
+
+        System.out.println("Enter the side length of the square:");
+
+        side = s.nextInt();
+    }
+
+    public double calcArea() {
+        return side * side;
+    }
+
+    public void display() {
+        System.out.println("Square - Side Length: " + side + ", Area: " + calcArea());
+    }
+}
+
+public class program4 {
+    public static void main(String[] args) {
+
+        Rectangle rectangle = new Rectangle();
+        Circle circle = new Circle();
+        Square square = new Square();
+
+        rectangle.getDimensions();
+        rectangle.display();
+
+        circle.getDimensions();
+        circle.display();
+
+        square.getDimensions();
+        square.display();
+    }
+}
