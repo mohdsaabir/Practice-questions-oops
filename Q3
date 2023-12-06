@@ -1,0 +1,101 @@
+import java.io.*;
+import java.lang.*;
+
+class resourses{
+    synchronized void factorial(){
+        int fac=1,i;
+        for(i=1;i<=10;i++)
+        {
+            fac=fac*i;
+        }
+        System.out.println("\nFactorial is:");
+        System.out.println(fac);
+    }
+    synchronized void fibonacci(){
+        int a=0,b=1,c;
+        int i;
+        System.out.println("\nfibanocci is:");
+        System.out.print(a);
+        System.out.print(b);
+        for(i=3;i<=10;i++)
+        {
+            c=a+b;
+            System.out.print(c);
+            a=b;
+            b=c;
+        }
+       
+    }
+    synchronized void prime()
+    {
+        int i,n=2,count=0;
+        System.out.println("\nPrime no are:");
+        for(i=1;n<=10;i++)
+        {
+            for(i=2;i<n;i++)
+            {
+                if(n%i==0)
+                {
+                    count++;
+                }
+            }
+            if(count==0)
+            {
+                System.out.print(n);
+            }
+            n++;
+            count=0;
+        }
+
+    }
+}
+
+class fact extends Thread{
+    resourses r1;
+    fact(resourses ob)
+    {
+        r1=ob;
+    }
+    public void run(){
+         r1.factorial();
+    } 
+}
+
+class fib extends Thread{
+    resourses r1;
+    fib(resourses ob)
+    {
+        r1=ob;
+    }
+    public void run(){
+         r1.fibonacci();
+    } 
+}
+
+class pri extends Thread{
+    resourses r1;
+    pri(resourses ob)
+    {
+        r1=ob;
+    }
+    public void run(){
+         r1.prime();
+    } 
+}
+
+
+
+public class program3 {
+    public static void main(String args[])
+    {
+        resourses ob=new resourses();
+        fact f1=new fact(ob);
+        fib f2=new fib(ob);
+        pri p1=new pri(ob);
+
+        f1.start();
+        f2.start();
+        p1.start();
+    }
+    
+}
