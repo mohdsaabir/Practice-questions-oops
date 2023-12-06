@@ -1,0 +1,141 @@
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+import java.text.*;
+
+class bookinlib{
+    String bookname,publishers;
+    int bookno,noofcopies;
+    void getdata(String bookname,String publishers,int bookno,int noofcopies)
+    {
+        this.bookname=bookname;
+        this.publishers=publishers;
+        this.bookno=bookno;
+        this.noofcopies=noofcopies;
+    }
+    void details()
+    {
+        System.out.println("NAME:"+ bookname);
+        System.out.println("PUBLISHER:"+ publishers);
+        System.out.println("BOOK NO:"+ bookno);
+        System.out.println("NO OF COPIES"+ noofcopies);
+        
+    }
+    void check()
+    {
+        if(noofcopies!=0)
+        {
+            System.out.println("Book is available book issued");
+        }
+        else
+        {
+            System.out.println("Book is not available Sorry better luck next time");
+        }
+    }
+    void returnbook(String issue,String submit)
+    {
+        SimpleDateFormat obj=new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date1=obj.parse(issue); //converting to date format
+            Date date2=obj.parse(submit);
+            long difference=date2.getTime()-date1.getTime(); //diff in millisec
+            long days=(difference/(1000*60*60*24))%365; //convering to days in string
+            System.out.println("No of days from issue":+days);
+            if(days>10)
+            {
+                int fine=(int)days*5;
+                System.out.println("Fine="+fine);
+            }
+            else{
+                System.out.println("No Fine");
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+public class program1{
+    public static void main(String args[])
+    {
+        Scanner s=new Scanner(System.in);
+        String booknam,pb;
+        int bookno,noofcop;
+        int n,i;
+        System.out.println("Enter the no of books in library");
+        n=s.nextInt();
+        bookinlib b[]=new bookinlib[n];
+        for(i=0;i<n;i++)
+        {
+            b[i]=new bookinlib();
+            System.out.println("Enter book details");
+            System.out.print("NAME:");
+            booknam=s.next();
+            System.out.print("PUBLISHER:");
+            pb=s.next();
+            System.out.print("BOOKNO:");
+            bookno=s.nextInt();
+            System.out.println("NO OF COPY:");
+            noofcop=s.nextInt();
+            b[i].getdata(booknam, pb, bookno, noofcop);
+        }
+
+        int choice;
+        System.out.println("1.BOOK DETAILS 2.BOOK GET 3.BOOK RETURN 4>EXIT");
+        do{
+            System.out.println("Enter your choice");
+            choice=s.nextInt();
+            switch(choice)
+            {
+                case 1:System.out.println("Enter book name");
+                        booknam=s.next();
+                        for(i=0;i<n;i++)
+                        {
+                            if(b[i].bookname.equals(booknam))
+                            {
+                                System.out.println("Book available\nDETAILS:");
+                                b[i].details();
+                                break;
+                            }
+                        }
+                        if(i>=n)
+                        {
+                            System.out.println("Book is not available");
+                        }
+                        break;
+                
+                case 2:System.out.println("Enter book name");
+                        booknam=s.next();
+                        for(i=0;i<n;i++)
+                        {
+                            if(b[i].bookname.equals(booknam))
+                            {
+                                b[i].check();
+                                break;
+                            }
+                        }
+                        if(i>=n)
+                        {
+                            System.out.println("Book is not available");
+                        }
+                        break;
+                
+                case 3: System.out.println("Enter issued date in (dd-mm-yyy)");
+                        String issue=s.next();
+                         System.out.println("Enter return date in (dd-mm-yyyy)");
+                         String submit=s.next();
+                         bookinlib ob=new bookinlib();
+                         ob.returnbook(issue, submit);
+                         break;
+
+                case 4: System.out.println("Thank you");
+                        break;
+                         
+                default:  System.out.println("Invalid choice");
+
+                        
+            }
+        }while(choice!=4);
+
+    }
+}
